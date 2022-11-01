@@ -22,9 +22,11 @@ func main() {
 		panic(err)
 	}
 
-	address, err := rpc.GetAccount(*client)
+	// address, err := rpc.GetAccounts(*client)
+	latestBlockNum, err := rpc.GetLatestBlockNum(*client)
 	if err != nil {
 		panic(err)
 	}
-	fmt.Println(address)
+	// fmt.Println(address)
+	fmt.Println(latestBlockNum)
 }
