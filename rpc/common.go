@@ -29,3 +29,16 @@ func GetLatestBlockNum(client rpc.Client) (*big.Int, error) {
 	}
 	return latestBlockNum, err
 }
+
+func GetChainId(client rpc.Client) (*big.Int, error) {
+	var chainIdHex string
+	err := client.Call(&chainIdHex, "eth_chainId")
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	chainId, err := hexutil.DecodeBig(chainIdHex)
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	return chainId, err
+}

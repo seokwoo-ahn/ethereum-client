@@ -1,9 +1,7 @@
 package rpc
 
 type CallResp struct {
-	Jsonrpc string
-	Id      int
-	Result  string
+	Result string
 	Error
 }
 
