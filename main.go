@@ -3,11 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
-	"log"
 
+	"ethereum-client/client"
 	"ethereum-client/config"
-
-	"github.com/ethereum/go-ethereum/rpc"
+	"ethereum-client/rpc"
 )
 
 type Block struct {
@@ -18,18 +17,14 @@ var configFlag = flag.String("config", "./config.toml", "configuration toml file
 
 func main() {
 	config := config.NewConfig(*configFlag)
-	apiKey := config.ApiKey
-	client, err := rpc.Dial("https://Goerli.infura.io/v3/" + apiKey)
+	client, err := client.ConnectClient(config)
 	if err != nil {
-		log.Fatalf("Could not connect to Infura: %v", err)
+		panic(err)
 	}
 
-	var lastBlock Block
-	err = client.Call(&lastBlock, "eth_getBlockByNumber", "latest", true)
+	address, err := rpc.GetAccount(*client)
 	if err != nil {
-		fmt.Println("Cannot get the latest block:", err)
-		return
+		panic(err)
 	}
-
-	fmt.Printf("Latest block: %v\n", lastBlock.Number)
+	fmt.Println(address)
 }
