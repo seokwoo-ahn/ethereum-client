@@ -24,11 +24,13 @@ func main() {
 
 	// address, err := rpc.GetAccounts(*client)
 	// latestBlockNum, err := rpc.GetLatestBlockNum(*client)
-	chainId, err := rpc.GetChainId(*client)
+	// chainId, err := rpc.GetChainId(*client)
+	gasPrice, err := rpc.GetGasPrice(*client)
 	if err != nil {
 		panic(err)
 	}
 	// fmt.Println(address)
 	// fmt.Println(latestBlockNum)
-	fmt.Println(chainId)
+	// fmt.Println(chainId)
+	fmt.Println(gasPrice)
 }

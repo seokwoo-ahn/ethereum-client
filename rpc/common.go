@@ -42,3 +42,16 @@ func GetChainId(client rpc.Client) (*big.Int, error) {
 	}
 	return chainId, err
 }
+
+func GetGasPrice(client rpc.Client) (*big.Int, error) {
+	var gasPriceHex string
+	err := client.Call(&gasPriceHex, "eth_chainId")
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	gasPrice, err := hexutil.DecodeBig(gasPriceHex)
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	return gasPrice, err
+}
