@@ -25,12 +25,16 @@ func main() {
 	// address, err := rpc.GetAccounts(*client)
 	// latestBlockNum, err := rpc.GetLatestBlockNum(*client)
 	// chainId, err := rpc.GetChainId(*client)
-	gasPrice, err := rpc.GetGasPrice(*client)
+	// gasPrice, err := rpc.GetGasPrice(*client)
+	// block, err := rpc.GetLatestBlock(*client)
+	blockHash := "0xffac2cfa6ff05d28c83656e7dd67badd00f2ee015d5934a74a07d18b761ca526"
+	block, err := rpc.GetBlockByHash(*client, blockHash, true)
 	if err != nil {
 		panic(err)
 	}
 	// fmt.Println(address)
 	// fmt.Println(latestBlockNum)
 	// fmt.Println(chainId)
-	fmt.Println(gasPrice)
+	// fmt.Println(gasPrice)
+	fmt.Println(block)
 }
