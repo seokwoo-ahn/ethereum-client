@@ -55,3 +55,16 @@ func GetGasPrice(client rpc.Client) (*big.Int, error) {
 	}
 	return gasPrice, err
 }
+
+func GetTxCountByBlockHash(client rpc.Client, blockHash string) (*big.Int, error) {
+	var txCountHex string
+	err := client.Call(&txCountHex, "eth_getBlockTransactionCountByHash", blockHash)
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	txCount, err := hexutil.DecodeBig(txCountHex)
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	return txCount, err
+}
