@@ -35,7 +35,8 @@ func main() {
 	// txCount, err := rpc.GetTxCountByBlockHash(*client, blockHash)
 	// txCount, err := rpc.GetTxCountByBlockNum(*client, blockNum)
 	// clientVersion, err := rpc.GetClientVersion(*client)
-	peerCount, err := rpc.GetNetPeerCount(*client)
+	// peerCount, err := rpc.GetNetPeerCount(*client)
+	isListening, err := rpc.IsListening(*client)
 	if err != nil {
 		panic(err)
 	}
@@ -46,5 +47,6 @@ func main() {
 	// fmt.Println(block)
 	// fmt.Println(txCount)
 	// fmt.Println(clientVersion)
-	fmt.Println(peerCount)
+	// fmt.Println(peerCount)
+	fmt.Println(isListening)
 }

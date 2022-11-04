@@ -64,3 +64,12 @@ func GetNetPeerCount(client rpc.Client) (*big.Int, error) {
 	}
 	return peerCount, err
 }
+
+func IsListening(client rpc.Client) (bool, error) {
+	var isListening bool
+	err := client.Call(&isListening, "net_listening")
+	if err != nil {
+		return false, err
+	}
+	return isListening, err
+}
