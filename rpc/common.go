@@ -68,3 +68,16 @@ func GetTxCountByBlockHash(client rpc.Client, blockHash string) (*big.Int, error
 	}
 	return txCount, err
 }
+
+func GetTxCountByBlockNum(client rpc.Client, blockNumHex string) (*big.Int, error) {
+	var txCountHex string
+	err := client.Call(&txCountHex, "eth_getBlockTransactionCountByNumber", blockNumHex)
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	txCount, err := hexutil.DecodeBig(txCountHex)
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	return txCount, err
+}

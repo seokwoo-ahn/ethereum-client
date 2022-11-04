@@ -22,7 +22,8 @@ func main() {
 		panic(err)
 	}
 
-	blockHash := "0xffac2cfa6ff05d28c83656e7dd67badd00f2ee015d5934a74a07d18b761ca526"
+	// blockHash := "0xffac2cfa6ff05d28c83656e7dd67badd00f2ee015d5934a74a07d18b761ca526"
+	blockNum := "0x7860fe"
 
 	// address, err := rpc.GetAccounts(*client)
 	// latestBlockNum, err := rpc.GetLatestBlockNum(*client)
@@ -31,7 +32,8 @@ func main() {
 	// block, err := rpc.GetLatestBlock(*client)
 	// block, err := rpc.GetBlockByHash(*client, blockHash, false)
 	// block, err := rpc.GetBlockByNumber(*client, "0x9", false)
-	txCount, err := rpc.GetTxCountByBlockHash(*client, blockHash)
+	// txCount, err := rpc.GetTxCountByBlockHash(*client, blockHash)
+	txCount, err := rpc.GetTxCountByBlockNum(*client, blockNum)
 	if err != nil {
 		panic(err)
 	}
