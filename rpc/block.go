@@ -21,3 +21,12 @@ func GetBlockByHash(client rpc.Client, blockHash string, detail bool) (Block, er
 	}
 	return block, nil
 }
+
+func GetBlockByNumber(client rpc.Client, blockNumHex string, detail bool) (Block, error) {
+	var block Block
+	err := client.Call(&block, "eth_getBlockByNumber", blockNumHex, detail)
+	if err != nil {
+		return Block{}, err
+	}
+	return block, nil
+}

@@ -27,8 +27,9 @@ func main() {
 	// chainId, err := rpc.GetChainId(*client)
 	// gasPrice, err := rpc.GetGasPrice(*client)
 	// block, err := rpc.GetLatestBlock(*client)
-	blockHash := "0xffac2cfa6ff05d28c83656e7dd67badd00f2ee015d5934a74a07d18b761ca526"
-	block, err := rpc.GetBlockByHash(*client, blockHash, true)
+	// blockHash := "0xffac2cfa6ff05d28c83656e7dd67badd00f2ee015d5934a74a07d18b761ca526"
+	// block, err := rpc.GetBlockByHash(*client, blockHash, false)
+	block, err := rpc.GetBlockByNumber(*client, "0x9", false)
 	if err != nil {
 		panic(err)
 	}
