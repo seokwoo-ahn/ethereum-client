@@ -51,3 +51,16 @@ func GetClientVersion(client rpc.Client) (string, error) {
 	}
 	return clientVersion, err
 }
+
+func GetNetPeerCount(client rpc.Client) (*big.Int, error) {
+	var peerCountHex string
+	err := client.Call(&peerCountHex, "net_peerCount")
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	peerCount, err := hexutil.DecodeBig(peerCountHex)
+	if err != nil {
+		return big.NewInt(0), err
+	}
+	return peerCount, err
+}

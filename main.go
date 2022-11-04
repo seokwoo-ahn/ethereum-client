@@ -34,7 +34,8 @@ func main() {
 	// block, err := rpc.GetBlockByNumber(*client, "0x9", false)
 	// txCount, err := rpc.GetTxCountByBlockHash(*client, blockHash)
 	// txCount, err := rpc.GetTxCountByBlockNum(*client, blockNum)
-	clientVersion, err := rpc.GetClientVersion(*client)
+	// clientVersion, err := rpc.GetClientVersion(*client)
+	peerCount, err := rpc.GetNetPeerCount(*client)
 	if err != nil {
 		panic(err)
 	}
@@ -44,5 +45,6 @@ func main() {
 	// fmt.Println(gasPrice)
 	// fmt.Println(block)
 	// fmt.Println(txCount)
-	fmt.Println(clientVersion)
+	// fmt.Println(clientVersion)
+	fmt.Println(peerCount)
 }
