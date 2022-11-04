@@ -17,19 +17,6 @@ func GetAccounts(client rpc.Client) ([]common.Address, error) {
 	return addresses, nil
 }
 
-func GetLatestBlockNum(client rpc.Client) (*big.Int, error) {
-	var latestBlockNumHex string
-	err := client.Call(&latestBlockNumHex, "eth_blockNumber")
-	if err != nil {
-		return big.NewInt(0), err
-	}
-	latestBlockNum, err := hexutil.DecodeBig(latestBlockNumHex)
-	if err != nil {
-		return big.NewInt(0), err
-	}
-	return latestBlockNum, err
-}
-
 func GetChainId(client rpc.Client) (*big.Int, error) {
 	var chainIdHex string
 	err := client.Call(&chainIdHex, "eth_chainId")
@@ -56,28 +43,11 @@ func GetGasPrice(client rpc.Client) (*big.Int, error) {
 	return gasPrice, err
 }
 
-func GetTxCountByBlockHash(client rpc.Client, blockHash string) (*big.Int, error) {
-	var txCountHex string
-	err := client.Call(&txCountHex, "eth_getBlockTransactionCountByHash", blockHash)
+func GetClientVersion(client rpc.Client) (string, error) {
+	var clientVersion string
+	err := client.Call(&clientVersion, "web3_clientVersion")
 	if err != nil {
-		return big.NewInt(0), err
+		return "", err
 	}
-	txCount, err := hexutil.DecodeBig(txCountHex)
-	if err != nil {
-		return big.NewInt(0), err
-	}
-	return txCount, err
-}
-
-func GetTxCountByBlockNum(client rpc.Client, blockNumHex string) (*big.Int, error) {
-	var txCountHex string
-	err := client.Call(&txCountHex, "eth_getBlockTransactionCountByNumber", blockNumHex)
-	if err != nil {
-		return big.NewInt(0), err
-	}
-	txCount, err := hexutil.DecodeBig(txCountHex)
-	if err != nil {
-		return big.NewInt(0), err
-	}
-	return txCount, err
+	return clientVersion, err
 }
